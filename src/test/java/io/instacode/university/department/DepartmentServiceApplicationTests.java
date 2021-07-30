@@ -1,4 +1,4 @@
-package io.instacode.automation.department;
+package io.instacode.university.department;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

@@ -1,4 +1,4 @@
-package io.instacode.automation.department.config;
+package io.instacode.university.department.config;
 
 import java.util.Properties;
 import javax.sql.DataSource;
@@ -14,11 +14,11 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @EnableTransactionManagement
 public class HibernateConfig {
 
-  @Bean
+  @Bean(name = "entityManagerFactory")
   public LocalSessionFactoryBean sessionFactory() {
     LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
     sessionFactory.setDataSource(dataSource());
-    sessionFactory.setPackagesToScan("io.instacode.automation.department");
+    sessionFactory.setPackagesToScan("io.instacode.university.department");
     sessionFactory.setHibernateProperties(hibernateProperties());
     return sessionFactory;
   }

@@ -1,4 +1,4 @@
-package io.instacode.automation.department;
+package io.instacode.university.department;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

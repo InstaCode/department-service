@@ -1,4 +1,4 @@
-package io.instacode.automation.department.config;
+package io.instacode.university.department.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
