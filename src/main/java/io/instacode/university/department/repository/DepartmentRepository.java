@@ -1,5 +1,6 @@
-package io.instacode.university.department;
+package io.instacode.university.department.repository;
 
+import io.instacode.university.department.model.Department;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

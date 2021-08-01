@@ -1,7 +1,6 @@
-package io.instacode.university.department;
+package io.instacode.university.department.model;
 
 import javax.persistence.Column;
-import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -11,7 +10,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-@Entity
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
@@ -26,4 +24,6 @@ public class Department {
   private Long id;
   private String departmentCode;
   private String departmentName;
+
+
 }
