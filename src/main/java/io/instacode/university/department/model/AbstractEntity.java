@@ -1,4 +1,5 @@
 package io.instacode.university.department.model;
 
-public class AbstractEntity<T> {
+public interface AbstractEntity<E> {
+  E getId();
 }

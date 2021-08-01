@@ -15,7 +15,7 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-public class Department {
+public class Department implements AbstractEntity {
 
 
   @Id

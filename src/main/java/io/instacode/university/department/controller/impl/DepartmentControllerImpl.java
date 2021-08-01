@@ -1,9 +1,9 @@
 package io.instacode.university.department.controller.impl;
 
 import io.instacode.university.department.controller.DepartmentController;
+import io.instacode.university.department.mapper.DepartmentMapper;
 import io.instacode.university.department.model.Department;
 import io.instacode.university.department.dto.DepartmentDTO;
-import io.instacode.university.department.mapper.DepartmentMapper;
 import io.instacode.university.department.service.DepartmentService;
 import java.util.List;
 import java.util.stream.Collectors;
