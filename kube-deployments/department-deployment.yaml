@@ -1,0 +1,72 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: automation-university-department
+  labels:
+    app: automation-university
+spec:
+  ports:
+    - port: 80
+      name: web-http
+    - port: 443
+      name: web-https
+  selector:
+    app: automation-university
+    tier: webservice
+  clusterIP: None
+  #---
+  #apiVersion: v1
+  #kind: PersistentVolumeClaim
+  #metadata:
+  #  name: mysql-pv-claim
+  #  labels:
+  #    app: automation-university
+  #spec:
+  #  accessModes:
+  #    - ReadWriteOnce
+  #  resources:
+  #    requests:
+  #      storage: 2Gi
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: automation-university-department
+  labels:
+    app: automation-university
+spec:
+  selector:
+    matchLabels:
+      app: automation-university
+      tier: webservice
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: automation-university
+        tier: webservice
+    spec:
+      containers:
+        - image: automationu/department-service:latest
+          name: department-service
+          ports:
+            - containerPort: 443
+            - containerPort: 80
+              name: department
+#          volumeMounts:
+#            - name: mysql-persistent-storage
+#              mountPath: /var/lib/mysql
+#      volumes:
+#        - name: mysql-persistent-storage
+#          persistentVolumeClaim:
+#            claimName: mysql-pv-claim
+# ---
+# apiVersion: v1
+# kind: Secret
+# metadata:
+#  name: mysql-pass
+# type: Opaque
+# data:
+#  password: bXktc3VwZXItc2VjcmV0LXBhc3N3b3Jk

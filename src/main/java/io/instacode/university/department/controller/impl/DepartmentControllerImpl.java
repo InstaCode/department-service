@@ -7,6 +7,8 @@ import io.instacode.university.department.dto.DepartmentDTO;
 import io.instacode.university.department.service.DepartmentService;
 import java.util.List;
 import java.util.stream.Collectors;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
@@ -24,6 +26,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/department-service")
 @RestController
 public class DepartmentControllerImpl implements DepartmentController {
+
+  @Autowired
+  private DiscoveryClient discoveryClient;
   private final DepartmentService departmentService;
   private final DepartmentMapper departmentMapper;
 

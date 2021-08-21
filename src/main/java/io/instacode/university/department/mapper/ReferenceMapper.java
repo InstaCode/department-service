@@ -21,7 +21,7 @@ public class ReferenceMapper {
   }
 
   @ObjectFactory
-  public <T extends AbstractEntity<?>> T resolve(AbstractDTO<?> sourceDTO, @TargetType Class<T> type) {
+  public <T extends AbstractEntity> T resolve(AbstractDTO<?> sourceDTO, @TargetType Class<T> type) {
     T entity = null;
     if (sourceDTO.getId() != null) {
       entity = em.find(type, sourceDTO.getId());
