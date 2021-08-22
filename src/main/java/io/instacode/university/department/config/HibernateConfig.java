@@ -30,7 +30,7 @@ public class HibernateConfig {
   private final Properties hibernateProperties() {
     Properties hibernateProperties = new Properties();
     hibernateProperties.setProperty("spring.jpa.open-in-view", "false");
-    hibernateProperties.setProperty("hibernate.hbm2ddl.auto", "create-drop");
+    hibernateProperties.setProperty("hibernate.hbm2ddl.auto", "update");
     hibernateProperties.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQL8Dialect");
 
 
