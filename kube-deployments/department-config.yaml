@@ -5,6 +5,8 @@ metadata:
   name: department-service
 data:
   application.properties: |-
+    spring.cloud.kubernetes.reload.enabled=true
+    spring.cloud.kubernetes.secrets.name=db-secret
     bean.message=Testing reload! Message from backend is: %s <br/> Services : %s
     spring.application.name=department-service
     server.port=8083

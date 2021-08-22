@@ -70,3 +70,12 @@ spec:
 # type: Opaque
 # data:
 #  password: bXktc3VwZXItc2VjcmV0LXBhc3N3b3Jk
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: db-secret
+type: Opaque
+data:
+  username: c3ByaW5nVXNlcg==
+  password: bXktc3VwZXItc2VjcmV0LXBhc3N3b3Jk

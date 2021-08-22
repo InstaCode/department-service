@@ -7,7 +7,10 @@ metadata:
     app: automation-university
 spec:
   ports:
-    - port: 3306
+    - name: mysql-port
+      port: 3306
+      targetPort: 3306
+      protocol: TCP
   selector:
     app: automation-university
     tier: mysql
@@ -49,10 +52,22 @@ spec:
         - image: mysql/mysql-server:latest
           name: mysql
           env:
+            - name: DB_HOST
+              value: 127.0.0.1
             - name: MYSQL_ROOT_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: mysql-pass
+                  name: db-secret
+                  key: password
+            - name: MYSQL_USER
+              valueFrom:
+                secretKeyRef:
+                  name: db-secret
+                  key: username
+            - name: MYSQL_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: db-secret
                   key: password
           ports:
             - containerPort: 3306
@@ -72,3 +87,14 @@ metadata:
 type: Opaque
 data:
   password: bXktc3VwZXItc2VjcmV0LXBhc3N3b3Jk
+---
+kind: "Endpoints"
+apiVersion: "v1"
+metadata:
+  name: mysql-db-svc
+  namespace: automation-university
+subsets:
+  - addresses:
+      - ip: "10.10.1.1"
+    ports:
+      - port: 3306

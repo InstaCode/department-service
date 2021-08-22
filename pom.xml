@@ -54,6 +54,7 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-configuration-processor</artifactId>
+            <version>2.5.3</version>
         </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>
@@ -87,7 +88,7 @@
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-core</artifactId>
-            <version>5.5.4.Final</version>
+            <version>5.5.5.Final</version>
         </dependency>
         <!--<dependency>
             <scope>compile</scope>
@@ -143,21 +144,26 @@
                 <configuration>
                     <release>11</release>
                     <annotationProcessorPaths>
-                        <annotationProcessorPath>
+                        <path>
+                            <groupId>org.springframework.boot</groupId>
+                            <artifactId>spring-boot-configuration-processor</artifactId>
+                            <version>2.5.3</version>
+                         </path>
+                        <path>
                             <groupId>org.mapstruct</groupId>
                             <artifactId>mapstruct-processor</artifactId>
                             <version>1.4.2.Final</version>
-                        </annotationProcessorPath>
-                        <annotationProcessorPath>
+                        </path>
+                        <path>
                             <groupId>org.projectlombok</groupId>
                             <artifactId>lombok-mapstruct-binding</artifactId>
                             <version>0.2.0</version>
-                        </annotationProcessorPath>
-                        <annotationProcessorPath>
+                        </path>
+                        <path>
                             <groupId>org.projectlombok</groupId>
                             <artifactId>lombok</artifactId>
                             <version>1.18.20</version>
-                        </annotationProcessorPath>
+                        </path>
                     </annotationProcessorPaths>
                 </configuration>
             </plugin>

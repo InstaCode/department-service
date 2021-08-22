@@ -7,7 +7,7 @@ import java.util.List;
 
 public class DepartmentBuilder {
   public static Department getEntity() {
-    return new Department(1L, "ICS", "Computer Science");
+    return new Department(Long.valueOf("1L"), "ICS", "Computer Science");
   }
 
   public static DepartmentDTO getDTO() {
