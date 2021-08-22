@@ -30,7 +30,7 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 @ExtendWith(SpringExtension.class)
 public class DepartmentControllerImplTest {
   //TODO: create the data Test generator class DepartmentBuilder
-  private static final String ENDPOINT_URL = "/departments";
+  private static final String ENDPOINT_URL = "/department-service";
   @MockBean
   private ReferenceMapper referenceMapper;
   @InjectMocks

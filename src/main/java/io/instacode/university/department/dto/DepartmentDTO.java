@@ -8,6 +8,18 @@ public class DepartmentDTO extends AbstractDTO<Long> {
   public DepartmentDTO() {
   }
 
+  public DepartmentDTO(String departmentCode, String departmentName) {
+    super();
+    this.departmentCode = departmentCode;
+    this.departmentName = departmentName;
+  }
+
+  public DepartmentDTO(Long id, String departmentCode, String departmentName) {
+    this.id = id;
+    this.departmentCode = departmentCode;
+    this.departmentName = departmentName;
+  }
+
   public void setId(Long id) {
     this.id = id;
   }

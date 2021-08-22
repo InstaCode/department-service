@@ -41,7 +41,7 @@ public class HibernateConfig {
 
     dataSourceBuilder.driverClassName("com.mysql.cj.jdbc.Driver");
     dataSourceBuilder.url("jdbc:mysql://localhost:3306/university-department-db?allowPublicKeyRetrieval=true&createDatabaseIfNotExist=true");
-    dataSourceBuilder.username("springuser");
+    dataSourceBuilder.username("springUser");
     dataSourceBuilder.password("ThePassword");
     return dataSourceBuilder.build();
   }
