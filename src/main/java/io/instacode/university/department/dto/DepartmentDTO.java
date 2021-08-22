@@ -1,6 +1,7 @@
 package io.instacode.university.department.dto;
 
 public class DepartmentDTO extends AbstractDTO<Long> {
+
   private Long id;
   private String departmentCode;
   private String departmentName;

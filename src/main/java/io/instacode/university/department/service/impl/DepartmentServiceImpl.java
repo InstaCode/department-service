@@ -27,7 +27,7 @@ public class DepartmentServiceImpl implements DepartmentService {
 
   @Override
   public List<Department> save(List<Department> entities) {
-    return (List<Department>) repository.saveAll(entities);
+    return repository.saveAll(entities);
   }
 
   @Override
@@ -37,7 +37,8 @@ public class DepartmentServiceImpl implements DepartmentService {
 
   @Override
   public Optional<Department> findById(Long id) {
-    return repository.findById(id);
+    Optional<Department> optional = repository.findById(id);
+    return optional;
   }
 
   @Override

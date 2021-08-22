@@ -2,8 +2,8 @@ package io.instacode.university.department.config;
 
 import java.util.Properties;
 import javax.sql.DataSource;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfiguration;
 import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -14,6 +14,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @Configuration
 @EnableTransactionManagement
+@EnableAutoConfiguration(exclude= HibernateJpaAutoConfiguration.class)
 public class HibernateConfig {
 
 
@@ -28,6 +29,7 @@ public class HibernateConfig {
 
   private final Properties hibernateProperties() {
     Properties hibernateProperties = new Properties();
+    hibernateProperties.setProperty("spring.jpa.open-in-view", "false");
     hibernateProperties.setProperty("hibernate.hbm2ddl.auto", "create-drop");
     hibernateProperties.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQL8Dialect");
 
@@ -47,7 +49,7 @@ public class HibernateConfig {
   }
 
   @Bean
-  public PlatformTransactionManager hibernateTransactionManager() {
+  public PlatformTransactionManager transactionManager() {
     HibernateTransactionManager transactionManager = new HibernateTransactionManager();
     transactionManager.setSessionFactory(sessionFactory().getObject());
     return transactionManager;
