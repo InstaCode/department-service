@@ -1,9 +1,13 @@
+---
 version: '3.8'
 services:
   database:
     container_name: automation-university-database
     image: 'library/mysql:latest'
-    restart: always
+#    build:
+#      context: ./
+#      dockerfile: Dockerfile.mysql
+    restart: unless-stopped
     ports:
       - '3306:3306'
     expose:
@@ -13,28 +17,30 @@ services:
       - MYSQL_PASSWORD=ThePassword
       - MYSQL_DATABASE=university-department-db
       - MYSQL_USER=springUser
+      - MYSQL_ROOT_HOST=%
     networks:
       - automation-unversity-network
     volumes:
-      - db-data:/~/Documents/Docker/Spring
-    healthcheck:
-      test: "/usr/bin/mysql --user=root --password=password--execute \"SHOW DATABASES;\""
-      interval: 2s
-      timeout: 20s
-      retries: 10
-#  hibernate-app:
-#    container_name: db-init
-#    build:
-#      context: ./database
-#      dockerfile: Dockerfile
-#    #restart: on-failure
-#    volumes:
-#      - gradle-data:/home/gradle/data
-#    #      - ./database:./source
-#    depends_on:
-#      - database
-#    networks:
-#      - automation-unversity-network
+      - 'db-data:/~/Documents/Docker/Spring'
+#    healthcheck:
+#      test: /usr/bin/mysql --user=springUser --password=ThePassword --execute "SHOW DATABASES;"
+#      interval: 2s
+#      timeout: 20s
+#      retries: 10
+  microservice:
+    container_name: department-service
+    #image: 'automationu/department-service:0.0.1-SNAPSHOT'
+    build:
+      args:
+        - JAR_FILE=department-service-0.0.1-SNAPSHOT.jar
+      context: ./
+      dockerfile: Dockerfile.maven
+    ports:
+      - '8083:8083'
+    depends_on:
+      - database
+    networks:
+      - automation-unversity-network
 networks:
   automation-unversity-network:
     driver: bridge

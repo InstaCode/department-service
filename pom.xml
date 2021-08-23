@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://maven.apache.org/POM/4.0.0"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
@@ -9,7 +9,7 @@
         <version>2.5.3</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>io.instacode.automation</groupId>
+    <groupId>io.instacode.university</groupId>
     <artifactId>department-service</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>department-service</name>
@@ -17,6 +17,18 @@
     <properties>
         <java.version>11</java.version>
     </properties>
+    <!--<repositories>
+        <repository>
+            <id>repository.spring.release</id>
+            <name>Spring GA Repository</name>
+            <url>http://repo.spring.io/release</url>
+        </repository>
+        <repository>
+            <id>repository.central</id>
+            <name> Maven Central Repository</name>
+            <url>https://repo1.maven.org/maven2/</url>
+        </repository>
+    </repositories>-->
     <dependencyManagement>
         <dependencies>
             <dependency>
@@ -24,9 +36,28 @@
                 <artifactId>spring-cloud-starter-kubernetes</artifactId>
                 <version>1.1.10.RELEASE</version>
             </dependency>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-starter-kubernetes-ribbon</artifactId>
+                <version>1.1.10.RELEASE</version>
+            </dependency>
+            <dependency>
+                <scope>pom</scope>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>2020.0.3</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
     <dependencies>
+       <!-- <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-config</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+        </dependency>-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-actuator</artifactId>
@@ -38,6 +69,11 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-context</artifactId>
+            <version>3.0.2</version>
         </dependency>
 
         <dependency>
@@ -68,12 +104,6 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <version>2.5.3</version>
         </dependency>
-<!--        <dependency>-->
-<!--            <scope>import</scope>-->
-<!--            <groupId>org.springframework.cloud</groupId>-->
-<!--            <artifactId>spring-cloud-dependencies</artifactId>-->
-<!--            <version>2020.0.3</version>-->
-<!--        </dependency>-->
         <dependency>
             <scope>compile</scope>
             <groupId>mysql</groupId>
@@ -90,21 +120,6 @@
             <artifactId>hibernate-core</artifactId>
             <version>5.5.5.Final</version>
         </dependency>
-        <!--<dependency>
-            <scope>compile</scope>
-            <groupId>org.mapstruct.extensions.spring</groupId>
-            <artifactId>mapstruct-spring-annotations</artifactId>
-            <version>0.1.0</version>
-        </dependency>-->
-
-<!--        <dependency>
-            <scope>compile</scope>
-            <groupId>org.mapstruct.extensions.spring</groupId>
-            <artifactId>mapstruct-spring-extensions</artifactId>
-            <version>0.1.0</version>
-        </dependency>-->
-
-
         <dependency>
             <scope>compile</scope>
             <groupId>org.mapstruct</groupId>
@@ -128,6 +143,21 @@
             <artifactId>spring-cloud-commons</artifactId>
             <version>3.0.3</version>
         </dependency>
+        <dependency>
+            <groupId>com.netflix.ribbon</groupId>
+            <artifactId>ribbon</artifactId>
+            <version>2.7.18</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-kubernetes</artifactId>
+            <version>1.1.10.RELEASE</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-kubernetes-ribbon</artifactId>
+            <version>1.1.10.RELEASE</version>
+        </dependency>
     </dependencies>
 
     <build>
@@ -148,7 +178,7 @@
                             <groupId>org.springframework.boot</groupId>
                             <artifactId>spring-boot-configuration-processor</artifactId>
                             <version>2.5.3</version>
-                         </path>
+                        </path>
                         <path>
                             <groupId>org.mapstruct</groupId>
                             <artifactId>mapstruct-processor</artifactId>
@@ -176,7 +206,9 @@
                 <executions>
                     <execution>
                         <configuration>
-                            <mainClass>io.instacode.university.department.DepartmentServiceApplication</mainClass>
+                            <mainClass>
+                                io.instacode.university.department.DepartmentServiceApplication
+                            </mainClass>
                         </configuration>
                     </execution>
                 </executions>
@@ -190,7 +222,7 @@
                         <id>default</id>
                         <goals>
                             <goal>build</goal>
-                            <!--<goal>push</goal>-->
+                            <goal>push</goal>
                         </goals>
                     </execution>
                 </executions>
@@ -211,7 +243,9 @@
                         <manifest>
                             <addClasspath>true</addClasspath>
                             <classpathPrefix>lib/</classpathPrefix>
-                            <mainClass>io.instacode.university.department.DepartmentServiceApplication</mainClass>
+                            <mainClass>
+                                io.instacode.university.department.DepartmentServiceApplication
+                            </mainClass>
                         </manifest>
                     </archive>
                 </configuration>

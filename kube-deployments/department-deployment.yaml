@@ -8,9 +8,14 @@ metadata:
 spec:
   ports:
     - port: 80
+      targetPort: 80
       name: web-http
     - port: 443
+      targetPort: 443
       name: web-https
+    - port: 8083
+      targetPort: 8083
+      name: micro-port
   selector:
     app: automation-university
     tier: webservice
@@ -49,12 +54,13 @@ spec:
         tier: webservice
     spec:
       containers:
-        - image: automationu/department-service:latest
+        - image: automationu/department-service:0.0.1-SNAPSHOT
           name: department-service
           ports:
             - containerPort: 443
             - containerPort: 80
               name: department
+          imagePullPolicy: Always
 #          volumeMounts:
 #            - name: mysql-persistent-storage
 #              mountPath: /var/lib/mysql

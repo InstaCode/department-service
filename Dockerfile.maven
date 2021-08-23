@@ -1,14 +1,15 @@
-FROM openjdk:11
+#FROM adoptopenjdk/maven-openjdk11 as build
+FROM openjdk:11 as runtime
 MAINTAINER Jason Edstrom <jason@instacode.io>
 LABEL Vendor="Automation University"
 LABEL label-with-value="department-service"
 LABEL version="0.1"
 LABEL name="department-service"
 LABEL description="department-service"
-ENTRYPOINT ["/usr/bin/java", "-jar", "/usr/share/myservice/myservice.jar"]
+ENTRYPOINT ["/usr/local/openjdk-11/bin/java", "-jar", "/usr/share/department-service/department-service.jar", "-Dlogging.level.web=DEBUG" ]
 
 # Add Maven dependencies (not shaded into the artifact; Docker-cached)
-ADD target/lib           /usr/share/myservice/lib
+ADD target/lib           /usr/share/department-service/lib
 # Add the service itself
 ARG JAR_FILE
-ADD target/${JAR_FILE} /usr/share/myservice/myservice.jar
+ADD target/${JAR_FILE} /usr/share/department-service/department-service.jar
