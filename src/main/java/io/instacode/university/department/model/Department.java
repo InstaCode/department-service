@@ -11,6 +11,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 @Getter
 @Setter
@@ -19,6 +20,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @Builder
 @Entity
+@ToString
 public class Department implements Serializable {
 
   @Id

@@ -21,7 +21,7 @@ services:
     networks:
       - automation-unversity-network
     volumes:
-      - 'db-data:/~/Documents/Docker/Spring'
+      - $PWD/data/mysql:/var/lib/mysql
 #    healthcheck:
 #      test: /usr/bin/mysql --user=springUser --password=ThePassword --execute "SHOW DATABASES;"
 #      interval: 2s
@@ -46,4 +46,3 @@ networks:
     driver: bridge
 volumes:
   db-data: null
-  gradle-data: null
